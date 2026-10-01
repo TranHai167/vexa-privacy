@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy Policy — VexAI</title>
+<meta name="description" content="What data VexAI handles, where it goes, how long it is kept.">
+<link rel="icon" href="/assets/icon48.png">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <a class="logo" href="/"><img src="/assets/icon48.png" alt="" width="32" height="32">VexAI</a>
+  <nav class="nav"><a href="/">Home</a><a href="/pricing/">Pricing</a><a href="/privacy/" class="hide-sm" aria-current="page">Privacy</a><a href="/terms/" class="hide-sm">Terms</a></nav>
+</div></header>
+<main>
+<article class="legal"><div class="wrap narrow">
+<h1>Privacy Policy — VexAI</h1>
+<p class="meta"><strong>Effective date:</strong> 25 July 2026 &nbsp;·&nbsp; <strong>Last updated:</strong> 1 October 2026 &nbsp;·&nbsp; <strong>Contact:</strong> <a href="mailto:vexai.app@gmail.com">vexai.app@gmail.com</a></p>
+<p>VexAI is a browser extension that translates web pages, images, comics and documents, answers questions about the page you are reading, and dubs YouTube videos. This policy explains exactly what data the extension handles, where it goes, how long it is kept, and what control you have over it.</p>
+
+<p>We do not sell your data. We do not use it for advertising. The extension contains no analytics, tracking pixels, or telemetry of any kind.</p>
+
+<h2 id="s1">1. Summary</h2>
+
+<div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;min-width:520px;font-size:.93rem">
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Do we sell or share data with data brokers?</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">No.</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Do we use your data for advertising?</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">No.</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Is there analytics or usage tracking in the extension?</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">No. The extension sends no telemetry.</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Do we read your browsing history?</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">No. We never collect a list of sites you visit.</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Is an account required?</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">No. Web page translation, the selection popup and local OCR work without one; AI features require signing in with Google.</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Is my content used to train AI models?</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Not by us. See <a href="#s5">§5</a> for the one case where a third-party provider may do so (the optional free model in Page Assistant).</td></tr>
+
+</table></div>
+
+<h2 id="s2">2. What the extension does <em>not</em> do</h2>
+
+<p>These are worth stating plainly, because the extension requests broad permissions:</p>
+
+<ul>
+  <li>It does <strong>not</strong> run in the background collecting the pages you visit. Page content is read <strong>only</strong> at the moment you invoke a feature on that page (for example, you click "Translate" or turn on page reading in the Page Assistant).</li>
+  <li>It does <strong>not</strong> transmit your cookies, passwords, or form data to us or to any third party. See <a href="#s7">§7</a> for the one narrow use of cookies.</li>
+  <li>It does <strong>not</strong> record your keystrokes. The only keyboard listener that runs on pages reacts to the extension's own shortcuts (Alt+Q / Alt+W / Alt+S) and ignores every other key; nothing is stored or sent.</li>
+  <li>It does <strong>not</strong> contain analytics, crash reporting, session recording, fingerprinting, or advertising code.</li>
+  <li>It does <strong>not</strong> scan, index, or bulk-read your Google Drive, Gmail, Sheets or Docs. See <a href="#s8">§8</a>.</li>
+</ul>
+
+<h2 id="s3">3. Account data</h2>
+
+<p>Signing in is optional; it is required only for AI-powered features and for purchasing credits.</p>
+
+<p>When you sign in with Google, we receive from Google and store on our servers:</p>
+
+<ul>
+  <li>your Google account ID</li>
+  <li>your email address</li>
+  <li>your display name</li>
+  <li>your profile picture URL</li>
+</ul>
+
+<p>We store this in our database (hosted on Supabase) together with your credit balance. We use it to identify your account, apply your credit balance, and contact you about your purchases. We do not receive or store your Google password.</p>
+
+<p>Your session token and profile are also stored locally in your browser (<code>chrome.storage.local</code>) so you stay signed in.</p>
+
+<p><strong>Free-credit abuse prevention.</strong> New accounts receive free credits once per device. To enforce this, the extension creates a random installation ID the first time you sign in and keeps it in <code>chrome.storage.local</code>; it is not derived from your hardware or browser characteristics. At sign-in our server receives this ID and the IP address of the request, and stores only a keyed hash (HMAC-SHA256) of each — never the raw values — together with whether free credits were granted. The hashed IP address is deleted after 30 days. The hashed installation ID is kept to stop the same device claiming free credits again, including after the account is deleted. Neither is used for anything else.</p>
+
+<p><strong>Daily free allowances.</strong> Some features have a free daily allowance (for example, a number of free comic pages per day, or free-model requests in Page Assistant). To count it we store your account ID, the date and the count. These counters are deleted after 7 days.</p>
+
+<h2 id="s4">4. Data sent when you use a feature</h2>
+
+<p>Nothing below is sent unless you actively invoke the feature. "Our servers" means our backend at <code>vexai.wideworkx.com</code> and our own OCR/detection servers; the providers named in each row are described in <a href="#s5">§5</a>.</p>
+
+<div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;min-width:520px;font-size:.93rem">
+
+<tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg-soft)">Feature you invoke</th><th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg-soft)">What is sent, and to whom</th><th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg-soft)">Retained</th></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Web page translation</strong> and the <strong>selected-text popup</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The text segments to translate go <strong>directly from your browser to Google Translate</strong>. For a single English word, that word is also sent to the free dictionary service dictionaryapi.dev. Nothing goes to our servers.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Not retained by us</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Page Assistant (chat)</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Your message, the conversation history, your local date, time and time zone (so answers about "today" are correct), and — only while the 📖 "Read page content" toggle is on — the current page's URL, title and extracted text; plus any screenshot or image you attach. The toggle starts <strong>off</strong> every time you open the panel and resets when you navigate to another page, so page content is never sent until you switch it on for that page. Sent to our servers, then to the AI provider of the model you selected. If you enable <strong>Web search</strong>, the search query the AI writes is sent to a web search provider.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Conversation stored so you can resume it; you can delete any conversation from Settings → Page Assistant → chat history. <strong>Auto-deleted 60 days after its last update.</strong></td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Comic / image translation — Free mode</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The image goes to our OCR server. The recognised text is then translated either <strong>directly from your browser by Google Translate</strong> or on our servers by an AI provider.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Image not stored. Recognised and translated text may be cached — see <a href="#s9">§9</a>.</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Comic / image translation — Smart mode</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The image, plus source and target language, go to our servers and then to Alibaba Cloud's AI model, which reads and translates it.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Image not stored. Translated text may be cached — see <a href="#s9">§9</a>.</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Snip &amp; translate (OCR)</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">In the default mode, text is recognised <strong>on your device</strong> and the recognised text is translated directly from your browser by Google Translate. Other modes send the selected screen region to our OCR server or to an AI provider.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Not retained</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Advanced / document translation</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The text or document you submitted, sent to our servers and an AI provider (basic mode translates directly from your browser with Google Translate).</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Not retained</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>AI content detector</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The text or image you submitted, sent to our servers. Detection uses models hosted on our own servers and/or an AI provider. Text not in English may first be translated directly from your browser by Google Translate.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Not retained</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Safe link — "Check link with AI"</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Only the single link URL you selected from the right-click menu. Our server then fetches that page itself, without any of your cookies or credentials, and analyses its content with an AI provider. We never receive the links you merely hover over, click, or visit.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Not retained</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Writing assistant</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Your prompt and the text you are working on, sent to our servers and an AI provider.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Not retained</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>News search / deep dive</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Your search keywords and language. Our server queries news and web search providers and fetches the article pages it finds, then summarises them with an AI provider.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Search history stored. <strong>Auto-deleted after 90 days.</strong></td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>YouTube dubbing</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The video ID and the subtitle text to translate and voice, sent to our servers; the translated lines are voiced by a text-to-speech provider (Google Cloud or Microsoft). If you choose the free voice, lines are sent directly from your browser to Google's text-to-speech service, or spoken by your device's own voices without any network request.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Generated audio is cached in server memory, not linked to your account, and cleared when the server restarts</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Vibes (custom effects)</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The effect you create: its name, settings, and either an image you upload or an image generated by Alibaba Cloud's AI model from the text prompt you write.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Stored until you delete the effect</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Feedback form</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Your message, the optional reply-to email you enter, and any screenshots you attach. Delivered to us <strong>by email</strong> (Gmail); not stored in our database.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Kept in our mailbox for as long as needed to handle it</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Buying credits</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Handled by Paddle (<a href="#s5">§5</a>). We store the transaction record.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Purchase records kept <strong>2 years</strong> (needed for refunds and disputes); other credit usage records <strong>auto-deleted after 90 days</strong></td></tr>
+
+</table></div>
+
+<p>Retention above is enforced automatically by scheduled jobs in our database.</p>
+
+<h2 id="s5">5. Third parties who process data for us</h2>
+
+<div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;min-width:520px;font-size:.93rem">
+
+<tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg-soft)">Provider</th><th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg-soft)">Role</th><th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg-soft)">What they receive</th></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Supabase</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Database hosting</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Account record, chat sessions, search history, credit transactions, custom effects</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Alibaba Cloud (Qwen models)</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Default AI provider for translation, comic reading, OCR assistance, detection, writing and image generation</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The content of the specific request you made (text, image, page extract, prompt)</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>OpenRouter</strong>, and through it the maker of the model you pick — Google, Anthropic, OpenAI, DeepSeek, Xiaomi, MiniMax, NVIDIA, inclusionAI</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">AI answers in Page Assistant when you select one of these models</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The conversation and any page content or image you chose to include</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Google</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Sign-in; Google Translate; Cloud text-to-speech; Sheets/Docs API (<a href="#s8">§8</a>); email delivery for feedback</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">OAuth identity check; text you translate; subtitle lines to voice; feedback messages</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Microsoft</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Neural text-to-speech voices for YouTube dubbing</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Subtitle lines to voice</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Web search providers</strong> — Serper, Google Programmable Search, Tavily, DuckDuckGo</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Web and news search for Page Assistant and News</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The search query only — never your identity</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>dictionaryapi.dev</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Dictionary definitions in the selection popup</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The single English word you selected</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Sentry</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Error reporting <strong>on our servers</strong> (not in the extension)</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Technical error details: error message, the feature involved, your account ID. Images, tokens, cookies and authorization headers are stripped before sending.</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Paddle</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Payment processing (Merchant of Record)</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Your billing details, collected <strong>directly by Paddle</strong>. We never see or store your card number.</td></tr>
+
+</table></div>
+
+<p><strong>Free model in Page Assistant.</strong> The optional "Free model" is served by providers that offer models at no cost through OpenRouter. Some of these providers <strong>may log prompts and use them to improve their models</strong>. Do not send personal or confidential content while the free model is selected; choose a paid model if this concerns you.</p>
+
+<p>OCR for Free-mode comics and the AI-image detection models run on servers we operate ourselves; that content is not passed to a third party for those steps.</p>
+
+<h2 id="s6">6. Why the extension needs each permission</h2>
+
+<div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;min-width:520px;font-size:.93rem">
+
+<tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg-soft)">Permission</th><th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg-soft)">Why it is needed</th></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>&lt;all_urls&gt;</code> / <code>activeTab</code> / <code>scripting</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">To read and translate the page you are currently on, and to draw the translation overlay and side panel. Content is read only when you invoke a feature.</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>storage</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">To save your settings, notes, and sign-in session</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>tabs</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">To know which tab a feature was invoked on, and to open the settings page</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>contextMenus</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The right-click "VexAI" submenu on selected text (Translate, Summarize, Explain, Reply), and — when Safe link check is enabled — the "Check link with AI" entry shown on links</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>identity</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Google sign-in</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>cookies</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Two narrow uses only:</strong> (a) when downloading an image that is protected against hotlinking, we re-attach the cookie you already have for <em>that image's own site</em> so the download succeeds; (b) we attach your youtube.com cookie when fetching YouTube subtitles. In both cases the cookie is sent <strong>only back to the site it belongs to</strong>. Cookies are never sent to VexAI or to any third party.</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>offscreen</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Runs the on-device OCR engine used by Snip &amp; translate, which needs a worker in Manifest V3</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>declarativeNetRequestWithHostAccess</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">To set the correct <code>Referer</code> when fetching images from sites that block hotlinking</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Host access to <code>translate.googleapis.com</code>, <code>www.googleapis.com</code>, <code>accounts.google.com</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Google Translate requests made from your browser, Google sign-in, and the Google Sheets / Docs skills</td></tr>
+
+</table></div>
+
+<h2 id="s7">7. Google Sheets and Google Docs access</h2>
+
+<p>Signing in to VexAI asks only for your basic Google identity (<code>openid</code>, <code>email</code>, <code>profile</code>). Two further scopes exist, and they are requested <strong>separately and only at the moment you first open the Google Sheets or Google Docs skill</strong> — never during normal sign-in:</p>
+
+<ul>
+  <li><code>.../auth/spreadsheets</code> — read and edit Google Sheets</li>
+  <li><code>.../auth/documents</code> — read and edit Google Docs</li>
+</ul>
+
+<p>If you only use VexAI to translate and read, you are never asked to grant these at all.</p>
+
+<p>We deliberately do <strong>not</strong> request any Google Drive scope. The extension cannot list, browse, or download files from your Drive — it can only act on the specific Sheet or Doc you have open at the time.</p>
+
+<p>These scopes are used <strong>only</strong> by the Page Assistant's optional Google Sheets / Google Docs skills, and only when you have explicitly enabled that skill and are working on such a document. In that case:</p>
+
+<ul>
+  <li>the relevant cell range or document content is sent to the AI model so it can answer or perform the edit you asked for;</li>
+  <li>any edit is written <strong>directly from your browser to the Google API</strong>;</li>
+  <li>we do <strong>not</strong> browse, list, index, or back up your Drive, and we do not store your Sheets or Docs content on our servers.</li>
+</ul>
+
+<p>Every operation that <strong>writes</strong> to a Sheet or Doc shows a confirmation dialog first. That dialog lists the actual file ID, range and change taken straight from the request that is about to be sent — not just the AI's description of it — so you can check what will happen before allowing it.</p>
+
+<p>VexAI's use of information received from Google APIs adheres to the <a href="https://developers.google.com/terms/api-services-user-data-policy">Google API Services User Data Policy</a>, including the Limited Use requirements.</p>
+
+<p>If you never enable these skills, these scopes are never exercised. You can revoke access at any time from <strong>Settings → Page Assistant → Google Sheets &amp; Docs connection → Revoke</strong>, or at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. Signing out of the extension also revokes it automatically.</p>
+
+<h2 id="s8">8. Shared caches</h2>
+
+<p><strong>Image translations.</strong> To reduce cost and latency, translations of <strong>images</strong> are cached on our servers keyed by a hash of the image, and reused for anyone who later translates the identical image. The cache entry contains the extracted and translated text — it is <strong>not linked to your account or to any user identifier</strong>, and entries expire after 180 days. Pages you capture from the screen (rather than images loaded by the site) are never written to this cache.</p>
+
+<p>Because the translated text of an image you process may be served to another user who processes the same image, <strong>do not use image translation on private or confidential images while this is enabled.</strong> You can turn it off: <strong>Settings → Comic → "Enable global translation cache"</strong>. With it off, your translations are not written to the shared cache.</p>
+
+<p><strong>Dubbing audio.</strong> Voiced subtitle lines are cached in server memory keyed by a hash of the voice and text, so a popular video is only voiced once. The cache holds no user identifier and is cleared whenever the server restarts.</p>
+
+<h2 id="s9">9. Features that never leave your device</h2>
+
+<p>These run entirely locally and make no network requests with your content:</p>
+
+<ul>
+  <li><strong>Gmail pre-send check</strong> — the confirmation dialog before you send an email. Your email content is analysed in the page and never transmitted.</li>
+  <li><strong>Safe-link check (automatic warning)</strong> — the warning shown when you click a link with a suspicious URL structure is computed entirely in the page. No link you hover, click, or visit is transmitted. The separate <strong>"Check link with AI"</strong> action is <em>not</em> local — see <a href="#s4">§4</a>.</li>
+  <li><strong>Quick Notes</strong> — stored in <code>chrome.storage.local</code> on your machine only.</li>
+  <li><strong>On-device OCR in Snip &amp; translate</strong> — the image is processed in your browser. The first time you use a language, the extension downloads that language's recognition data from <code>tessdata.projectnaptha.com</code>; this download contains nothing about you or your image.</li>
+  <li>All extension settings and panel layout state.</li>
+</ul>
+
+<h2 id="s10">10. Data stored on your own device</h2>
+
+<div style="overflow-x:auto"><table style="border-collapse:collapse;width:100%;min-width:520px;font-size:.93rem">
+
+<tr><th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg-soft)">Location</th><th style="text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);background:var(--bg-soft)">Contents</th></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>chrome.storage.sync</code> (synced by Chrome to your Google account)</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Settings: languages, theme, enabled sites, translation mode</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>chrome.storage.local</code> (this device only)</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Sign-in token and profile, a random installation ID (<a href="#s3">§3</a>), quick notes, translation cache, panel state</td></tr>
+
+</table></div>
+
+<p>Uninstalling the extension removes both. Removing your server-side account requires a request — see <a href="#s12">§12</a>.</p>
+
+<h2 id="s11">11. Our website</h2>
+
+<p>The website at pyktools.com is a static site with no sign-in, cookies, analytics or tracking. It is hosted on GitHub Pages; like any web host, GitHub may log the IP address and browser details of visitors for security purposes, under GitHub's own privacy statement.</p>
+
+<h2 id="s12">12. Your rights and choices</h2>
+
+<ul>
+  <li><strong>Access / export</strong> — Settings → Account → Export data copies your local settings and data.</li>
+  <li><strong>Delete a conversation</strong> — Settings → Page Assistant → chat history, at any time.</li>
+  <li><strong>Delete your server-side data</strong> — email <strong><a href="mailto:vexai.app@gmail.com">vexai.app@gmail.com</a></strong> from the address you signed up with. We will delete your account record, chat sessions, search history and custom effects, and confirm within 30 days. Purchase records are kept for the period in <a href="#s4">§4</a> where the law or payment disputes require it, and the hashed installation ID described in <a href="#s3">§3</a> is kept. (There is currently no self-service delete button; this is handled manually.)</li>
+  <li><strong>Delete local data</strong> — sign out, or uninstall the extension. Signing out keeps the installation ID (<a href="#s3">§3</a>); uninstalling removes it.</li>
+  <li><strong>Withdraw Google access</strong> — see <a href="#s7">§7</a>, or <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>.</li>
+  <li><strong>Opt out of the shared image cache</strong> — see <a href="#s8">§8</a>.</li>
+</ul>
+
+<p>Depending on where you live you may have additional rights (access, rectification, erasure, portability, objection) under the GDPR or similar laws. Use the contact address above to exercise them.</p>
+
+<h2 id="s13">13. Security</h2>
+
+<p>Traffic between the extension and our servers uses HTTPS. Access to your account data is protected by a signed session token, and database rows are isolated per user by row-level security. No system is perfectly secure; please report vulnerabilities to <a href="mailto:vexai.app@gmail.com">vexai.app@gmail.com</a>.</p>
+
+<h2 id="s14">14. Children</h2>
+
+<p>VexAI is not directed to children under 13, and we do not knowingly collect data from them. If you believe a child has provided us data, contact us and we will remove it.</p>
+
+<h2 id="s15">15. International transfers</h2>
+
+<p>Our infrastructure and AI providers operate in multiple regions, including outside your country of residence. By using the extension you understand your request content may be processed in those regions.</p>
+
+<h2 id="s16">16. Changes to this policy</h2>
+
+<p>If we change how data is handled we will update this page and revise the "Last updated" date. Material changes will also be noted in the extension's release notes on the Chrome Web Store.</p>
+
+<h2 id="s17">17. Contact</h2>
+
+<p>Questions, requests, or complaints: <strong><a href="mailto:vexai.app@gmail.com">vexai.app@gmail.com</a></strong></p>
+</div></article>
+</main>
+<footer class="site-foot"><div class="wrap">
+  <span>© 2026 Pyktools · VexAI is operated by TRAN NGOC HAI</span>
+  <nav>
+    <a href="/pricing/">Pricing</a><a href="/terms/">Terms of Service</a><a href="/refund/">Refund Policy</a>
+    <a href="/privacy/">Privacy Policy</a><a href="mailto:vexai.app@gmail.com">vexai.app@gmail.com</a>
+  </nav>
+</div></footer>
+</body>
+</html>
