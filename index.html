@@ -35,12 +35,26 @@
   <div class="wrap narrow">
     <h2>See it in action</h2>
     <p class="sub">A 90-second tour: comics, web pages, the Page Assistant and YouTube subtitles with voice-over.</p>
-    <!-- Ảnh bìa dẫn sang YouTube thay vì nhúng iframe: trang không tải gì của YouTube cho tới khi người xem bấm -->
-    <a class="demo" href="https://www.youtube.com/watch?v=fmR1b0omFIo" target="_blank" rel="noopener">
+    <!-- Ảnh bìa trước, bấm mới thay bằng iframe youtube-nocookie: trang không tải gì của YouTube cho tới khi
+         người xem bấm. Không có JS thì vẫn là link sang YouTube. -->
+    <a class="demo" id="demo-video" data-yt="fmR1b0omFIo" href="https://www.youtube.com/watch?v=fmR1b0omFIo" target="_blank" rel="noopener">
       <img src="/assets/demo-thumb.jpg" alt="VexAI translating a manga page in place" width="1280" height="800" loading="lazy">
       <span class="demo__play" aria-hidden="true"></span>
-      <span class="demo__label">Watch the demo on YouTube</span>
+      <span class="demo__label">Play the demo</span>
     </a>
+    <script>
+      document.getElementById("demo-video").addEventListener("click", function (e) {
+        if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return; // mở tab mới thì để link chạy
+        e.preventDefault();
+        var f = document.createElement("iframe");
+        f.className = "demo demo--playing";
+        f.src = "https://www.youtube-nocookie.com/embed/" + this.dataset.yt + "?autoplay=1&rel=0&modestbranding=1";
+        f.title = "VexAI demo video";
+        f.allow = "autoplay; encrypted-media; picture-in-picture; fullscreen";
+        f.allowFullscreen = true;
+        this.replaceWith(f);
+      });
+    </script>
   </div>
 </section>
 
