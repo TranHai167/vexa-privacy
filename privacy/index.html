@@ -23,8 +23,8 @@
 <main>
 <article class="legal"><div class="wrap narrow">
 <h1>Privacy Policy — VexAI</h1>
-<p class="meta"><strong>Effective date:</strong> 25 July 2026 &nbsp;·&nbsp; <strong>Last updated:</strong> 16 October 2026 &nbsp;·&nbsp; <strong>Contact:</strong> <a href="mailto:support@pyktools.com">support@pyktools.com</a></p>
-<p>VexAI is a browser extension that translates web pages, images, comics and documents, answers questions about the page you are reading, and dubs YouTube videos. This policy explains exactly what data the extension handles, where it goes, how long it is kept, and what control you have over it.</p>
+<p class="meta"><strong>Effective date:</strong> 25 July 2026 &nbsp;·&nbsp; <strong>Last updated:</strong> 18 October 2026 &nbsp;·&nbsp; <strong>Contact:</strong> <a href="mailto:support@pyktools.com">support@pyktools.com</a></p>
+<p>VexAI is a browser extension that translates web pages, images, comics and documents, answers questions about the page you are reading, and summarizes YouTube videos. This policy explains exactly what data the extension handles, where it goes, how long it is kept, and what control you have over it.</p>
 
 <p>We do not sell your data. We do not use it for advertising. The extension contains no analytics, tracking pixels, or telemetry of any kind.</p>
 
@@ -42,7 +42,7 @@
 
 <tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Is an account required?</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">No. Web page translation, the selection popup and local OCR work without one; AI features require signing in with Google.</td></tr>
 
-<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Is my content used to train AI models?</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Not by us. See <a href="#s5">§5</a> for the one case where a third-party provider may do so (the optional free model in Page Assistant).</td></tr>
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Is my content used to train AI models?</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Not by us. AI providers handle your requests under their own data policies (<a href="#s5">§5</a>).</td></tr>
 
 </table></div>
 
@@ -107,9 +107,11 @@
 
 <tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>News search / deep dive</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Your search keywords and language. Our server queries news and web search providers and fetches the article pages it finds, then summarises them with an AI provider.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Search history stored. <strong>Auto-deleted after 90 days.</strong></td></tr>
 
-<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>YouTube dubbing</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The video ID and the subtitle text to translate and voice, sent to our servers; the translated lines are voiced by a text-to-speech provider (Google Cloud or Microsoft) using its standard synthetic voices — VexAI never clones or imitates a real person's voice. If you choose the free voice, lines are sent directly from your browser to Google's text-to-speech service, or spoken by your device's own voices without any network request.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Generated audio is cached in server memory, not linked to your account, and cleared when the server restarts</td></tr>
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>YouTube video summary</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The video ID, title, channel name and length, and the video's subtitle (transcript) text, which the extension reads from the YouTube player in your own browser. Sent to our servers, then to the AI provider of the model you selected for Page Assistant. Choosing another language on the summary card sends the summary text to be translated the same way. You can turn the card off, or make it summarize only when you click: Settings → YouTube.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Not stored on our servers. The finished summary is kept in your browser's local storage (the 50 most recent videos) so reopening a video does not run it again</td></tr>
 
-<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Vibes (custom effects)</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The effect you create: its name, settings, and the emoji or image you choose for it. <strong>Generating images with AI is currently turned off</strong> — effects use emoji or an image you upload yourself. (Effects created earlier with AI image generation stay in your account until you delete them.)</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Stored until you delete the effect. The first few words of an AI prompt appear in your credit history, which is deleted after 90 days</td></tr>
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>YouTube dubbing</strong> (extension versions up to 1.0.3 only)</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The video ID and the subtitle text to translate and voice, sent to our servers; the translated lines are voiced by a text-to-speech provider (Google Cloud or Microsoft) using its standard synthetic voices — VexAI never clones or imitates a real person's voice. If you choose the free voice, lines are sent directly from your browser to Google's text-to-speech service, or spoken by your device's own voices without any network request.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Generated audio is cached in server memory, not linked to your account, and cleared when the server restarts</td></tr>
+
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Vibes (custom effects)</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The effect you create: its name, settings, and either an emoji, an image you upload, or an image generated by Alibaba Cloud's AI model from the text prompt you write. Before generating, the prompt is checked by our own filters, by an AI model and by our payment provider Creem's moderation service, and refused if it asks for a real, identifiable person, sexual content or gore. There is no face swap and no way to upload a photo of a person for the AI to transform.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Stored until you delete the effect. The first few words of an AI prompt appear in your credit history, which is deleted after 90 days</td></tr>
 
 <tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Feedback form</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Your message, the optional reply-to email you enter, and any screenshots you attach. Delivered to us <strong>by email</strong> (sent through our email provider, Resend); not stored in our database.</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Kept in our mailbox for as long as needed to handle it</td></tr>
 
@@ -129,7 +131,7 @@
 
 <tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Alibaba Cloud (Qwen models)</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Default AI provider for translation, comic reading, OCR assistance, detection, writing and image generation</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The content of the specific request you made (text, image, page extract, prompt)</td></tr>
 
-<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>OpenRouter</strong>, and through it the maker of the model you pick — Google, Anthropic, OpenAI, DeepSeek, Xiaomi, MiniMax, NVIDIA, inclusionAI</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">AI answers in Page Assistant when you select one of these models</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The conversation and any page content or image you chose to include</td></tr>
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>OpenRouter</strong>, and through it the maker of the model you pick — Google, Anthropic, OpenAI, DeepSeek, Xiaomi, MiniMax, NVIDIA, inclusionAI, Mistral AI</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">AI answers in Page Assistant when you select one of these models</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The conversation and any page content or image you chose to include</td></tr>
 
 <tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Google</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Sign-in; Google Translate; Cloud text-to-speech; Sheets/Docs API (<a href="#s8">§8</a>)</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">OAuth identity check; text you translate; subtitle lines to voice</td></tr>
 
@@ -137,7 +139,7 @@
 
 <tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Creem</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Payment processing for credit packs, as reseller (Merchant of Record)</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Your email and order details at checkout (card details go directly to Creem — we never see them)</td></tr>
 
-<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Microsoft</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Neural text-to-speech voices for YouTube dubbing</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Subtitle lines to voice</td></tr>
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Microsoft</strong></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Neural text-to-speech voices for YouTube dubbing (extension versions up to 1.0.3)</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Subtitle lines to voice</td></tr>
 
 <tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Web search providers</strong> — Serper, Google Programmable Search, Tavily, DuckDuckGo</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Web and news search for Page Assistant and News</td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">The search query only — never your identity</td></tr>
 
@@ -147,7 +149,7 @@
 
 </table></div>
 
-<p><strong>Free model in Page Assistant.</strong> The optional "Free model" is served by providers that offer models at no cost through OpenRouter. Some of these providers <strong>may log prompts and use them to improve their models</strong>. Do not send personal or confidential content while the free model is selected; choose a paid model if this concerns you.</p>
+<p><strong>Free model in Page Assistant.</strong> The optional "Free model" costs you no credits, but it is not a no-cost model: we pay for it. It currently runs inclusionAI's Ling model, with Mistral AI's Mistral Nemo as backup, through OpenRouter — the same way as the paid models, under each provider's own data policy. It handles text only.</p>
 
 <p>OCR for Free-mode comics and the AI-image detection models run on servers we operate ourselves; that content is not passed to a third party for those steps.</p>
 
@@ -167,7 +169,7 @@
 
 <tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>identity</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Google sign-in</td></tr>
 
-<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>cookies</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Two narrow uses only:</strong> (a) when downloading an image that is protected against hotlinking, we re-attach the cookie you already have for <em>that image's own site</em> so the download succeeds; (b) we attach your youtube.com cookie when fetching YouTube subtitles. In both cases the cookie is sent <strong>only back to the site it belongs to</strong>. Cookies are never sent to VexAI or to any third party.</td></tr>
+<tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>cookies</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><strong>Two narrow uses only:</strong> (a) when downloading an image that is protected against hotlinking, we re-attach the cookie you already have for <em>that image's own site</em> so the download succeeds; (b) in extension versions up to 1.0.3 only, we attached your youtube.com cookie when fetching YouTube subtitles for dubbing. In both cases the cookie is sent <strong>only back to the site it belongs to</strong>. Cookies are never sent to VexAI or to any third party.</td></tr>
 
 <tr><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)"><code>offscreen</code></td><td style="vertical-align:top;padding:10px 12px;border-bottom:1px solid var(--line)">Runs the on-device OCR engine used by Snip &amp; translate, which needs a worker in Manifest V3</td></tr>
 
@@ -204,13 +206,23 @@
 
 <p>If you never enable these skills, these scopes are never exercised. You can revoke access at any time from <strong>Settings → Page Assistant → Google Sheets &amp; Docs connection → Revoke</strong>, or at <a href="https://myaccount.google.com/permissions">myaccount.google.com/permissions</a>. Signing out of the extension also revokes it automatically.</p>
 
+<p>### Confluence pages</p>
+
+<p>The Page Assistant can also read and edit a <strong>Confluence</strong> page (Atlassian Cloud or a self-hosted Data Center site) — only the page you have open, and only after you turn on 📖 page reading on it. It requests <strong>no extra permission and no Atlassian account access</strong>: it calls Confluence's own REST API from that page, with the sign-in you already have in your browser, so it can do exactly what you can do on that page and nothing more.</p>
+
+<ul>
+  <li>The page content (and the names of its attachments) is sent to the AI model so it can answer or prepare the edit you asked for. Files you attach in the chat for that page are kept in your browser until an edit uses them.</li>
+  <li>Edits and file uploads go <strong>directly from your browser to your Confluence site</strong> — they never pass through our servers, and we do not store your Confluence content.</li>
+  <li>Every edit opens a review listing each change (before → after). Only the changes you keep ticked are saved, as one new page version that you can compare or restore in Confluence's Page History.</li>
+</ul>
+
 <h2 id="s8">8. Shared caches</h2>
 
 <p><strong>Image translations.</strong> To reduce cost and latency, translations of <strong>images</strong> are cached on our servers keyed by a hash of the image, and reused for anyone who later translates the identical image. The cache entry contains the extracted and translated text — it is <strong>not linked to your account or to any user identifier</strong>, and entries expire after 180 days. Pages you capture from the screen (rather than images loaded by the site) are never written to this cache.</p>
 
 <p>Because the translated text of an image you process may be served to another user who processes the same image, <strong>do not use image translation on private or confidential images while this is enabled.</strong> You can turn it off: <strong>Settings → Comic → "Enable global translation cache"</strong>. With it off, your translations are not written to the shared cache.</p>
 
-<p><strong>Dubbing audio.</strong> Voiced subtitle lines are cached in server memory keyed by a hash of the voice and text, so a popular video is only voiced once. The cache holds no user identifier and is cleared whenever the server restarts.</p>
+<p><strong>Dubbing audio</strong> (extension versions up to 1.0.3). Voiced subtitle lines are cached in server memory keyed by a hash of the voice and text, so a popular video is only voiced once. The cache holds no user identifier and is cleared whenever the server restarts.</p>
 
 <h2 id="s9">9. Features that never leave your device</h2>
 
@@ -278,7 +290,7 @@
 </main>
 <footer class="site-foot"><div class="wrap">
   <nav class="foot-features">
-    <a href="/manga-translator/">Manga translator</a><a href="/web-page-translator/">Web page translator</a><a href="/youtube-subtitle-translator/">YouTube subtitle translator</a><a href="/dich-truyen-tranh/" hreflang="vi">Dịch truyện tranh</a>
+    <a href="/manga-translator/">Manga translator</a><a href="/web-page-translator/">Web page translator</a><a href="/youtube-video-summary/">YouTube video summary</a><a href="/dich-truyen-tranh/" hreflang="vi">Dịch truyện tranh</a>
   </nav>
   <span>© 2026 Pyktools</span>
   <nav>

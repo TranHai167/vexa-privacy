@@ -4,12 +4,12 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>VexAI — AI Manga &amp; Web Page Translator for Chrome</title>
-<meta name="description" content="Translate manga, manhwa, webtoons and web pages in place with AI, ask questions about the page you are reading, and get translated YouTube subtitles. Free to start.">
+<meta name="description" content="Translate manga, manhwa, webtoons and web pages in place with AI, ask questions about the page you are reading, and summarize YouTube videos. Free to start.">
 <link rel="canonical" href="https://vexai.pyktools.com/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="VexAI">
 <meta property="og:title" content="VexAI — AI Manga &amp; Web Page Translator for Chrome">
-<meta property="og:description" content="Translate manga, manhwa, webtoons and web pages in place with AI, ask questions about the page you are reading, and get translated YouTube subtitles. Free to start.">
+<meta property="og:description" content="Translate manga, manhwa, webtoons and web pages in place with AI, ask questions about the page you are reading, and summarize YouTube videos. Free to start.">
 <meta property="og:image" content="https://vexai.pyktools.com/assets/og.jpg">
 <meta name="twitter:card" content="summary_large_image">
 <link rel="icon" href="/assets/icon48.png">
@@ -26,7 +26,7 @@
     <div>
       <h1>Read anything on the web, <span>in your language</span>.</h1>
       <p class="lede">VexAI is a Chrome extension that translates web pages, images, comics and
-        documents, answers questions about the page you are reading, and dubs YouTube videos —
+        documents, answers questions about the page you are reading, and summarizes YouTube videos —
         right where you are, without copying and pasting.</p>
       <div class="cta">
         <a class="btn btn-primary" href="https://chromewebstore.google.com/detail/kcbiepdndpmdjbeobdndgbppfebnkaod" target="_blank" rel="noopener">Add to Chrome — it's free</a>
@@ -41,7 +41,7 @@
 <section class="demo-section">
   <div class="wrap narrow">
     <h2>See it in action</h2>
-    <p class="sub">A 90-second tour: comics, web pages, the Page Assistant and YouTube subtitles with voice-over.</p>
+    <p class="sub">A 90-second tour: comics, web pages and the Page Assistant.</p>
     <!-- Ảnh bìa trước, bấm mới thay bằng iframe youtube-nocookie: trang không tải gì của YouTube cho tới khi
          người xem bấm. Không có JS thì vẫn là link sang YouTube. -->
     <a class="demo" id="demo-video" data-yt="fmR1b0omFIo" href="https://www.youtube.com/watch?v=fmR1b0omFIo" target="_blank" rel="noopener">
@@ -87,8 +87,8 @@
       </div>
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2.5 17a24.1 24.1 0 0 1 0-10 2 2 0 0 1 1.4-1.4 49.6 49.6 0 0 1 16.2 0A2 2 0 0 1 21.5 7a24.1 24.1 0 0 1 0 10 2 2 0 0 1-1.4 1.4 49.6 49.6 0 0 1-16.2 0A2 2 0 0 1 2.5 17"/><path d="m10 15 5-3-5-3z"/></svg></div>
-        <h3>YouTube dubbing</h3>
-        <p>Translated subtitles and an AI voice-over in standard synthetic voices, synced with playback — no voice cloning.</p>
+        <h3>YouTube video summary</h3>
+        <p>The key points of a video in your language, right next to the player, with timestamped highlights you can click to jump to.</p>
       </div>
       <div class="card">
         <div class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 7V5a2 2 0 0 1 2-2h2"/><path d="M17 3h2a2 2 0 0 1 2 2v2"/><path d="M21 17v2a2 2 0 0 1-2 2h-2"/><path d="M7 21H5a2 2 0 0 1-2-2v-2"/><path d="M7 12h10"/></svg></div>
@@ -142,7 +142,7 @@
 </main>
 <footer class="site-foot"><div class="wrap">
   <nav class="foot-features">
-    <a href="/manga-translator/">Manga translator</a><a href="/web-page-translator/">Web page translator</a><a href="/youtube-subtitle-translator/">YouTube subtitle translator</a><a href="/dich-truyen-tranh/" hreflang="vi">Dịch truyện tranh</a>
+    <a href="/manga-translator/">Manga translator</a><a href="/web-page-translator/">Web page translator</a><a href="/youtube-video-summary/">YouTube video summary</a><a href="/dich-truyen-tranh/" hreflang="vi">Dịch truyện tranh</a>
   </nav>
   <span>© 2026 Pyktools</span>
   <nav>
