@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>VexAI — Help us improve</title>
+<meta name="description" content="A short, optional survey shown after VexAI is uninstalled.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="VexAI">
+<meta property="og:title" content="VexAI — Help us improve">
+<meta property="og:description" content="A short, optional survey shown after VexAI is uninstalled.">
+<meta property="og:image" content="https://vexai.pyktools.com/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/icon48.png">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <a class="logo" href="/"><img src="/assets/icon48.png" alt="" width="32" height="32">VexAI</a>
+  <nav class="nav"><a href="/">Home</a><a href="/pricing/">Pricing</a><a href="/privacy/" class="hide-sm">Privacy</a><a href="/terms/" class="hide-sm">Terms</a></nav>
+</div></header>
+<main>
+<style>
+  .un { padding: 48px 0 72px; }
+  .un-card {
+    position: relative; background: var(--card); border: 1px solid var(--line); border-radius: var(--radius);
+    box-shadow: var(--shadow); padding: 32px 28px 28px;
+  }
+  .un-x {
+    position: absolute; top: 14px; right: 14px; width: 36px; height: 36px; border-radius: 10px;
+    border: 1px solid transparent; background: transparent; color: var(--muted); font-size: 18px; cursor: pointer;
+  }
+  .un-x:hover { background: var(--bg-soft); border-color: var(--line); color: var(--fg); }
+  .un h1 { font-size: clamp(1.5rem, 3.4vw, 2rem); margin: 0 40px 8px 0; letter-spacing: -.02em; }
+  .un .lede { color: var(--muted); margin: 0 0 24px; }
+  .un fieldset { border: 0; padding: 0; margin: 0 0 20px; }
+  .un legend { font-weight: 700; margin-bottom: 10px; }
+  .un-reasons { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+  @media (max-width: 640px) { .un-reasons { grid-template-columns: 1fr; } .un-card { padding: 28px 18px 22px; } }
+  .un-reasons label {
+    display: flex; gap: 10px; align-items: flex-start; padding: 10px 12px; border: 1px solid var(--line);
+    border-radius: 10px; cursor: pointer; line-height: 1.4;
+  }
+  .un-reasons label:hover { border-color: var(--brand); }
+  .un-reasons input { margin-top: 3px; accent-color: var(--brand); flex-shrink: 0; }
+  .un-reasons label:has(input:checked) { border-color: var(--brand); background: var(--brand-soft); }
+  .un-field { margin-bottom: 16px; }
+  .un-field label { display: block; font-weight: 600; margin-bottom: 6px; }
+  .un textarea, .un input[type="email"] {
+    width: 100%; box-sizing: border-box; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px;
+    background: var(--bg); color: var(--fg); font: inherit;
+  }
+  .un textarea { min-height: 96px; resize: vertical; }
+  .un textarea:focus, .un input[type="email"]:focus { outline: 2px solid var(--brand); outline-offset: 1px; border-color: transparent; }
+  .un-hint { color: var(--muted); font-size: .88rem; margin-top: 4px; }
+  .un-actions { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+  .un .btn[disabled] { opacity: .5; cursor: not-allowed; }
+  .un-err { color: #d93025; margin-top: 12px; display: none; }
+  .un-done { text-align: center; padding: 24px 0 8px; }
+  .un-done .big { font-size: 40px; }
+  [hidden] { display: none !important; }
+
+  .un-modal { position: fixed; inset: 0; z-index: 50; display: grid; place-items: center; padding: 16px;
+    background: rgba(15, 12, 30, .55); }
+  .un-modal__box {
+    width: 100%; max-width: 420px; background: var(--card); color: var(--fg); border-radius: var(--radius);
+    border: 1px solid var(--line); box-shadow: 0 24px 60px rgba(0, 0, 0, .3); padding: 24px; text-align: center;
+  }
+  .un-modal__box h2 { margin: 0 0 8px; font-size: 1.25rem; }
+  .un-modal__box p { margin: 0 0 20px; color: var(--muted); }
+  .un-modal__btns { display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; }
+  .un-modal__btns .btn { min-width: 150px; justify-content: center; }
+</style>
+
+<section class="un">
+  <div class="wrap narrow">
+    <div class="un-card">
+      <button class="un-x" id="unX" type="button" aria-label="Close" title="Close">✕</button>
+
+      <div id="unForm">
+        <h1 data-t="h1">Sorry to see you go</h1>
+        <p class="lede" data-t="lede">VexAI has been removed. If you have 30 seconds, tell us why — every answer is read by the team and helps make VexAI better.</p>
+
+        <form id="unF" novalidate>
+          <fieldset>
+            <legend data-t="q">Why did you uninstall? (choose any)</legend>
+            <div class="un-reasons">
+              <label><input type="checkbox" name="r" value="quality"><span data-t="r_quality">Translations were not good enough</span></label>
+              <label><input type="checkbox" name="r" value="not_working"><span data-t="r_not_working">It didn't work on the sites I use</span></label>
+              <label><input type="checkbox" name="r" value="slow_buggy"><span data-t="r_slow_buggy">Too slow or too many errors</span></label>
+              <label><input type="checkbox" name="r" value="price"><span data-t="r_price">Free limits too low / credits too expensive</span></label>
+              <label><input type="checkbox" name="r" value="hard"><span data-t="r_hard">Hard to use, didn't know where to start</span></label>
+              <label><input type="checkbox" name="r" value="privacy"><span data-t="r_privacy">Privacy concerns</span></label>
+              <label><input type="checkbox" name="r" value="not_needed"><span data-t="r_not_needed">Just trying it out / don't need it now</span></label>
+              <label><input type="checkbox" name="r" value="other_tool"><span data-t="r_other_tool">I switched to another tool</span></label>
+              <label><input type="checkbox" name="r" value="other"><span data-t="r_other">Something else</span></label>
+            </div>
+          </fieldset>
+
+          <div class="un-field">
+            <label for="unMsg" data-t="msg">What would make you come back? (optional)</label>
+            <textarea id="unMsg" maxlength="2000" data-tp="msg_ph" placeholder="The more specific, the better — the site, the feature, what went wrong…"></textarea>
+          </div>
+          <div class="un-field">
+            <label for="unEmail" data-t="email">Your email (optional)</label>
+            <input id="unEmail" type="email" maxlength="200" autocomplete="email" data-tp="email_ph" placeholder="you@example.com">
+            <div class="un-hint" data-t="email_hint">Only if you'd like a reply. We never add it to any mailing list.</div>
+          </div>
+
+          <div class="un-actions">
+            <button class="btn btn-primary" id="unSend" type="submit" disabled data-t="send">Send feedback</button>
+          </div>
+          <div class="un-err" id="unErr" role="alert" data-t="err">Couldn't send right now. Please try again, or email support@pyktools.com.</div>
+        </form>
+      </div>
+
+      <div class="un-done" id="unDone" hidden>
+        <div class="big" aria-hidden="true">💜</div>
+        <h1 data-t="thanks">Thank you!</h1>
+        <p class="lede" data-t="thanks_body">Your feedback goes straight to the team. If you change your mind, VexAI is one click away.</p>
+        <a class="btn btn-ghost" href="https://chromewebstore.google.com/detail/kcbiepdndpmdjbeobdndgbppfebnkaod" target="_blank" rel="noopener" data-t="reinstall">Reinstall VexAI</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="un-modal" id="unModal" hidden role="dialog" aria-modal="true" aria-labelledby="unMT">
+  <div class="un-modal__box">
+    <h2 id="unMT" data-t="m_title">Before you go…</h2>
+    <p data-t="m_body">If you can, please leave us a little feedback so we can improve the service — it only takes about 30 seconds.</p>
+    <div class="un-modal__btns">
+      <button class="btn btn-ghost" id="unExit" type="button" disabled>Exit (5)</button>
+      <button class="btn btn-primary" id="unStay" type="button" data-t="m_stay">Give feedback</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(() => {
+  const qs = new URLSearchParams(location.search);
+  const API = qs.get("dev") === "1" ? "http://localhost:3000" : "https://api.vexai.pyktools.com";
+  const T = {
+    vi: {
+      h1: "Tiếc quá, bạn đã gỡ VexAI", lede: "Nếu có 30 giây, hãy cho chúng mình biết lý do — mọi câu trả lời đều được nhóm đọc và giúp VexAI tốt hơn.",
+      q: "Vì sao bạn gỡ VexAI? (chọn bao nhiêu cũng được)",
+      r_quality: "Dịch chưa đủ tốt", r_not_working: "Không chạy trên trang mình dùng", r_slow_buggy: "Chậm hoặc hay lỗi",
+      r_price: "Lượt miễn phí ít / credit đắt", r_hard: "Khó dùng, không biết bắt đầu từ đâu", r_privacy: "Lo ngại quyền riêng tư",
+      r_not_needed: "Chỉ cài để thử / giờ chưa cần", r_other_tool: "Mình chuyển sang công cụ khác", r_other: "Lý do khác",
+      msg: "Điều gì sẽ khiến bạn quay lại? (không bắt buộc)", msg_ph: "Càng cụ thể càng tốt — trang nào, tính năng nào, lỗi gì…",
+      email: "Email của bạn (không bắt buộc)", email_ph: "ban@vidu.com", email_hint: "Chỉ để trả lời bạn nếu cần. Không bao giờ thêm vào danh sách gửi thư.",
+      send: "Gửi góp ý", sending: "Đang gửi…", err: "Chưa gửi được. Thử lại, hoặc email support@pyktools.com.",
+      thanks: "Cảm ơn bạn!", thanks_body: "Góp ý của bạn được gửi thẳng tới nhóm. Nếu đổi ý, VexAI luôn chờ bạn quay lại.", reinstall: "Cài lại VexAI",
+      m_title: "Khoan đã…", m_body: "Nếu có thể, hãy cho chúng mình góp ý để cải thiện dịch vụ — chỉ mất khoảng 30 giây.",
+      m_stay: "Tiếp tục góp ý", exit: "Thoát", exit_in: "Thoát ({s})", close: "Đóng", closed: "Bạn có thể đóng tab này.", bye: "Tạm biệt!",
+    },
+    en: {
+      h1: "Sorry to see you go", lede: "VexAI has been removed. If you have 30 seconds, tell us why — every answer is read by the team and helps make VexAI better.",
+      q: "Why did you uninstall? (choose any)",
+      r_quality: "Translations were not good enough", r_not_working: "It didn't work on the sites I use", r_slow_buggy: "Too slow or too many errors",
+      r_price: "Free limits too low / credits too expensive", r_hard: "Hard to use, didn't know where to start", r_privacy: "Privacy concerns",
+      r_not_needed: "Just trying it out / don't need it now", r_other_tool: "I switched to another tool", r_other: "Something else",
+      msg: "What would make you come back? (optional)", msg_ph: "The more specific, the better — the site, the feature, what went wrong…",
+      email: "Your email (optional)", email_ph: "you@example.com", email_hint: "Only if you'd like a reply. We never add it to any mailing list.",
+      send: "Send feedback", sending: "Sending…", err: "Couldn't send right now. Please try again, or email support@pyktools.com.",
+      thanks: "Thank you!", thanks_body: "Your feedback goes straight to the team. If you change your mind, VexAI is one click away.", reinstall: "Reinstall VexAI",
+      m_title: "Before you go…", m_body: "If you can, please leave us a little feedback so we can improve the service — it only takes about 30 seconds.",
+      m_stay: "Give feedback", exit: "Exit", exit_in: "Exit ({s})", close: "Close", closed: "You can close this tab now.", bye: "Goodbye!",
+    },
+    ja: {
+      h1: "ご利用ありがとうございました", lede: "VexAI を削除しました。30秒ほどお時間があれば、理由を教えてください。いただいた回答はすべてチームが読み、改善に役立てます。",
+      q: "削除した理由は？（複数選択可）",
+      r_quality: "翻訳の品質が不十分", r_not_working: "使っているサイトで動かなかった", r_slow_buggy: "遅い・エラーが多い",
+      r_price: "無料枠が少ない／クレジットが高い", r_hard: "使い方がわかりにくい", r_privacy: "プライバシーが心配",
+      r_not_needed: "試しに入れただけ／今は不要", r_other_tool: "別のツールに乗り換えた", r_other: "その他",
+      msg: "どうすれば戻ってきてもらえますか？（任意）", msg_ph: "サイト、機能、起きた問題など、具体的に書いていただけると助かります…",
+      email: "メールアドレス（任意）", email_ph: "you@example.com", email_hint: "返信が必要な場合のみ。メールマガジン等には登録しません。",
+      send: "送信する", sending: "送信中…", err: "送信できませんでした。もう一度お試しいただくか、support@pyktools.com までメールしてください。",
+      thanks: "ありがとうございます！", thanks_body: "ご意見はチームに直接届きます。気が変わったら、いつでもワンクリックで戻れます。", reinstall: "VexAI を再インストール",
+      m_title: "お待ちください…", m_body: "よろしければ、サービス改善のためにご意見をお聞かせください。30秒ほどで終わります。",
+      m_stay: "意見を送る", exit: "終了", exit_in: "終了（{s}）", close: "閉じる", closed: "このタブを閉じても大丈夫です。", bye: "さようなら！",
+    },
+    ko: {
+      h1: "떠나신다니 아쉬워요", lede: "VexAI가 삭제되었습니다. 30초만 내어 이유를 알려 주세요. 모든 답변은 팀이 직접 읽고 VexAI 개선에 반영합니다.",
+      q: "삭제한 이유는 무엇인가요? (여러 개 선택 가능)",
+      r_quality: "번역 품질이 아쉬웠어요", r_not_working: "자주 쓰는 사이트에서 작동하지 않았어요", r_slow_buggy: "느리거나 오류가 많았어요",
+      r_price: "무료 한도가 적거나 크레딧이 비싸요", r_hard: "사용법이 어려웠어요", r_privacy: "개인정보가 걱정돼요",
+      r_not_needed: "그냥 써 본 것 / 지금은 필요 없어요", r_other_tool: "다른 도구로 바꿨어요", r_other: "기타",
+      msg: "어떻게 하면 다시 돌아오시겠어요? (선택)", msg_ph: "사이트, 기능, 겪은 문제 등을 구체적으로 적어 주시면 큰 도움이 됩니다…",
+      email: "이메일 (선택)", email_ph: "you@example.com", email_hint: "답장이 필요할 때만 사용하며, 메일링 리스트에 추가하지 않습니다.",
+      send: "의견 보내기", sending: "보내는 중…", err: "지금은 보낼 수 없어요. 다시 시도하거나 support@pyktools.com 로 메일을 보내 주세요.",
+      thanks: "감사합니다!", thanks_body: "의견은 팀에 바로 전달됩니다. 마음이 바뀌면 언제든 다시 설치할 수 있어요.", reinstall: "VexAI 다시 설치",
+      m_title: "잠깐만요…", m_body: "가능하다면 서비스 개선을 위해 의견을 남겨 주세요. 30초면 충분해요.",
+      m_stay: "의견 계속 쓰기", exit: "나가기", exit_in: "나가기 ({s})", close: "닫기", closed: "이제 이 탭을 닫으셔도 됩니다.", bye: "안녕히 가세요!",
+    },
+    "zh-CN": {
+      h1: "很遗憾你要离开", lede: "VexAI 已被移除。如果你有 30 秒，请告诉我们原因——每条回答团队都会认真阅读，用来改进 VexAI。",
+      q: "你为什么卸载？（可多选）",
+      r_quality: "翻译效果不够好", r_not_working: "在我常用的网站上无法使用", r_slow_buggy: "太慢或错误太多",
+      r_price: "免费额度太少／积分太贵", r_hard: "不好用，不知道从哪里开始", r_privacy: "担心隐私",
+      r_not_needed: "只是试试／暂时不需要", r_other_tool: "换用了其他工具", r_other: "其他原因",
+      msg: "怎样才能让你回来？（选填）", msg_ph: "越具体越好——哪个网站、哪个功能、出了什么问题……",
+      email: "你的邮箱（选填）", email_ph: "you@example.com", email_hint: "仅用于回复你，绝不会加入任何邮件列表。",
+      send: "提交反馈", sending: "提交中…", err: "暂时无法提交。请重试，或发邮件至 support@pyktools.com。",
+      thanks: "谢谢你！", thanks_body: "你的反馈会直接发给团队。改变主意的话，随时一键装回 VexAI。", reinstall: "重新安装 VexAI",
+      m_title: "请稍等…", m_body: "如果可以，请给我们留下反馈，帮助我们改进服务——只需约 30 秒。",
+      m_stay: "继续填写", exit: "退出", exit_in: "退出（{s}）", close: "关闭", closed: "现在可以关闭此标签页了。", bye: "再见！",
+    },
+    id: {
+      h1: "Sayang sekali kamu pergi", lede: "VexAI sudah dihapus. Jika punya 30 detik, beri tahu kami alasannya — setiap jawaban dibaca tim dan membantu VexAI jadi lebih baik.",
+      q: "Mengapa kamu menghapus VexAI? (boleh pilih lebih dari satu)",
+      r_quality: "Terjemahannya kurang bagus", r_not_working: "Tidak berfungsi di situs yang saya pakai", r_slow_buggy: "Terlalu lambat atau sering error",
+      r_price: "Kuota gratis sedikit / kredit terlalu mahal", r_hard: "Sulit dipakai, tidak tahu mulai dari mana", r_privacy: "Khawatir soal privasi",
+      r_not_needed: "Hanya mencoba / belum perlu sekarang", r_other_tool: "Saya pindah ke alat lain", r_other: "Alasan lain",
+      msg: "Apa yang akan membuatmu kembali? (opsional)", msg_ph: "Semakin spesifik semakin baik — situsnya, fiturnya, apa yang salah…",
+      email: "Email kamu (opsional)", email_ph: "kamu@contoh.com", email_hint: "Hanya untuk membalas jika perlu. Tidak akan dimasukkan ke milis apa pun.",
+      send: "Kirim masukan", sending: "Mengirim…", err: "Belum bisa mengirim. Coba lagi, atau email ke support@pyktools.com.",
+      thanks: "Terima kasih!", thanks_body: "Masukanmu langsung sampai ke tim. Kalau berubah pikiran, VexAI hanya sekali klik.", reinstall: "Pasang ulang VexAI",
+      m_title: "Tunggu sebentar…", m_body: "Jika bisa, beri kami masukan untuk memperbaiki layanan — hanya sekitar 30 detik.",
+      m_stay: "Lanjut beri masukan", exit: "Keluar", exit_in: "Keluar ({s})", close: "Tutup", closed: "Kamu bisa menutup tab ini sekarang.", bye: "Sampai jumpa!",
+    },
+    pt: {
+      h1: "Que pena ver você partir", lede: "O VexAI foi removido. Se tiver 30 segundos, conte o motivo — cada resposta é lida pela equipe e ajuda a melhorar o VexAI.",
+      q: "Por que você desinstalou? (marque quantas quiser)",
+      r_quality: "As traduções não eram boas o suficiente", r_not_working: "Não funcionou nos sites que uso", r_slow_buggy: "Lento demais ou com muitos erros",
+      r_price: "Limite grátis baixo / créditos caros", r_hard: "Difícil de usar, não sabia por onde começar", r_privacy: "Preocupação com privacidade",
+      r_not_needed: "Só estava testando / não preciso agora", r_other_tool: "Mudei para outra ferramenta", r_other: "Outro motivo",
+      msg: "O que faria você voltar? (opcional)", msg_ph: "Quanto mais específico, melhor — o site, o recurso, o que deu errado…",
+      email: "Seu e-mail (opcional)", email_ph: "voce@exemplo.com", email_hint: "Só para responder, se você quiser. Nunca entra em lista de e-mails.",
+      send: "Enviar feedback", sending: "Enviando…", err: "Não foi possível enviar agora. Tente de novo ou escreva para support@pyktools.com.",
+      thanks: "Obrigado!", thanks_body: "Seu feedback vai direto para a equipe. Se mudar de ideia, o VexAI está a um clique.", reinstall: "Reinstalar o VexAI",
+      m_title: "Antes de sair…", m_body: "Se puder, deixe um feedback para melhorarmos o serviço — leva uns 30 segundos.",
+      m_stay: "Continuar o feedback", exit: "Sair", exit_in: "Sair ({s})", close: "Fechar", closed: "Você já pode fechar esta aba.", bye: "Até logo!",
+    },
+    es: {
+      h1: "Qué pena que te vayas", lede: "VexAI se ha eliminado. Si tienes 30 segundos, cuéntanos por qué: el equipo lee cada respuesta y nos ayuda a mejorar VexAI.",
+      q: "¿Por qué lo desinstalaste? (elige las que quieras)",
+      r_quality: "Las traducciones no eran lo bastante buenas", r_not_working: "No funcionaba en las webs que uso", r_slow_buggy: "Demasiado lento o con muchos errores",
+      r_price: "Límite gratis bajo / créditos caros", r_hard: "Difícil de usar, no sabía por dónde empezar", r_privacy: "Preocupación por la privacidad",
+      r_not_needed: "Solo lo estaba probando / no lo necesito ahora", r_other_tool: "Me cambié a otra herramienta", r_other: "Otro motivo",
+      msg: "¿Qué te haría volver? (opcional)", msg_ph: "Cuanto más concreto, mejor: la web, la función, qué falló…",
+      email: "Tu correo (opcional)", email_ph: "tu@ejemplo.com", email_hint: "Solo para responderte si quieres. Nunca lo añadimos a ninguna lista de correo.",
+      send: "Enviar comentarios", sending: "Enviando…", err: "No se pudo enviar ahora. Inténtalo de nuevo o escribe a support@pyktools.com.",
+      thanks: "¡Gracias!", thanks_body: "Tus comentarios llegan directamente al equipo. Si cambias de opinión, VexAI está a un clic.", reinstall: "Reinstalar VexAI",
+      m_title: "Antes de irte…", m_body: "Si puedes, déjanos tus comentarios para mejorar el servicio: solo lleva unos 30 segundos.",
+      m_stay: "Seguir con los comentarios", exit: "Salir", exit_in: "Salir ({s})", close: "Cerrar", closed: "Ya puedes cerrar esta pestaña.", bye: "¡Hasta pronto!",
+    },
+  };
+  const want = (qs.get("lang") || navigator.language || "en").toLowerCase();
+  const lang = want.startsWith("zh") ? "zh-CN" : (Object.keys(T).find((l) => want.startsWith(l.toLowerCase())) || "en");
+  const S = T[lang];
+  document.documentElement.lang = lang;
+  document.title = "VexAI — " + S.h1;
+  document.querySelectorAll("[data-t]").forEach((el) => { if (S[el.dataset.t]) el.textContent = S[el.dataset.t]; });
+  document.querySelectorAll("[data-tp]").forEach((el) => { if (S[el.dataset.tp]) el.placeholder = S[el.dataset.tp]; });
+
+  const $ = (id) => document.getElementById(id);
+  const form = $("unF"), send = $("unSend"), msg = $("unMsg"), email = $("unEmail"), err = $("unErr");
+  const x = $("unX"), modal = $("unModal"), exit = $("unExit"), stay = $("unStay");
+  x.title = x.ariaLabel = S.close;
+  let sent = false;
+
+  const reasons = () => [...form.querySelectorAll('input[name="r"]:checked')].map((i) => i.value);
+  const sync = () => { send.disabled = !reasons().length && !msg.value.trim(); };
+  form.addEventListener("input", sync);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    if (send.disabled) return;
+    send.disabled = true;
+    send.textContent = S.sending;
+    err.style.display = "none";
+    try {
+      const r = await fetch(API + "/api/feedback/uninstall", {
+        method: "POST", headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          reasons: reasons(), message: msg.value.trim(), email: email.value.trim(),
+          version: qs.get("v") || "", lang,
+        }),
+      });
+      if (!r.ok) throw new Error("HTTP " + r.status);
+      sent = true;
+      $("unForm").hidden = true;
+      $("unDone").hidden = false;
+    } catch {
+      err.style.display = "block";
+      send.textContent = S.send;
+      sync();
+    }
+  });
+
+  // ✕: đã gửi rồi thì đóng luôn; chưa gửi thì hỏi lại một lần, nút Thoát sáng sau 5 giây.
+  let timer = null;
+  function closeTab() {
+    window.close();
+    // Tab không do script mở mà đã đi qua nhiều trang thì Chrome không cho close().
+    setTimeout(() => {
+      modal.hidden = true;
+      document.querySelector(".un-card").innerHTML = `<div class="un-done"><h1>${sent ? S.thanks : S.bye}</h1><p class="lede">${S.closed}</p></div>`;
+    }, 300);
+  }
+  function openModal() {
+    modal.hidden = false;
+    let s = 5;
+    exit.disabled = true;
+    exit.textContent = S.exit_in.replace("{s}", s);
+    clearInterval(timer);
+    timer = setInterval(() => {
+      s--;
+      if (s > 0) { exit.textContent = S.exit_in.replace("{s}", s); return; }
+      clearInterval(timer);
+      exit.disabled = false;
+      exit.textContent = S.exit;
+      exit.focus();
+    }, 1000);
+    stay.focus();
+  }
+  function closeModal() {
+    clearInterval(timer);
+    modal.hidden = true;
+    form.querySelector('input[name="r"]')?.focus();
+  }
+  x.addEventListener("click", () => (sent ? closeTab() : openModal()));
+  exit.addEventListener("click", closeTab);
+  stay.addEventListener("click", closeModal);
+  modal.addEventListener("click", (e) => { if (e.target === modal) closeModal(); });
+  document.addEventListener("keydown", (e) => { if (e.key === "Escape" && !modal.hidden) closeModal(); });
+})();
+</script>
+
+</main>
+<footer class="site-foot"><div class="wrap">
+  <nav class="foot-features">
+    <a href="/manga-translator/">Manga translator</a><a href="/web-page-translator/">Web page translator</a><a href="/youtube-video-summary/">YouTube video summary</a><a href="/dich-truyen-tranh/" hreflang="vi">Dịch truyện tranh</a>
+  </nav>
+  <span>© 2026 Pyktools</span>
+  <nav>
+    <a href="/pricing/">Pricing</a><a href="/terms/">Terms of Service</a><a href="/refund/">Refund Policy</a>
+    <a href="/privacy/">Privacy Policy</a><a href="/acceptable-use/">Acceptable Use</a><a href="mailto:support@pyktools.com">support@pyktools.com</a>
+  </nav>
+</div></footer>
+</body>
+</html>
