@@ -254,6 +254,19 @@
   document.querySelectorAll("[data-t]").forEach((el) => { if (S[el.dataset.t]) el.textContent = S[el.dataset.t]; });
   document.querySelectorAll("[data-tp]").forEach((el) => { if (S[el.dataset.tp]) el.placeholder = S[el.dataset.tp]; });
 
+  // Lượt gỡ ẩn danh cho trang /admin (be routes/installs.js): gửi ngay khi trang mở, dù có điền khảo sát
+  // hay không — chỉ phiên bản, ngôn ngữ, ngày cài. Chỉ khi Chrome mở trang (có ?v=), một lần mỗi tab.
+  if (qs.get("v")) {
+    let counted = false;
+    try { counted = !!sessionStorage.getItem("vexUnCounted"); sessionStorage.setItem("vexUnCounted", "1"); } catch {}
+    if (!counted) {
+      fetch(API + "/api/installs", {
+        method: "POST", keepalive: true, headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ event: "uninstall", version: qs.get("v"), lang: qs.get("lang") || lang, installedOn: qs.get("i") || "" }),
+      }).catch(() => {});
+    }
+  }
+
   const $ = (id) => document.getElementById(id);
   const form = $("unF"), send = $("unSend"), msg = $("unMsg"), email = $("unEmail"), err = $("unErr");
   const x = $("unX"), modal = $("unModal"), exit = $("unExit"), stay = $("unStay");
