@@ -264,6 +264,26 @@
         method: "POST", keepalive: true, headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ event: "uninstall", version: qs.get("v"), lang: qs.get("lang") || lang, installedOn: qs.get("i") || "" }),
       }).catch(() => {});
+
+      // Nối lượt gỡ vào nhật ký hành trình người mới (be routes/journey.js) khi extension còn trong
+      // 1 ngày đầu — URL mang ?j=<mã hành trình>. Chẩn đoán vì sao người mới gỡ ngay. Không gửi gì
+      // nếu không có j (bản cài cũ / quá 1 ngày).
+      const jid = qs.get("j");
+      if (jid && /^[a-f0-9]{16,64}$/i.test(jid)) {
+        let kept;
+        const io = qs.get("i");
+        if (io && /^\d{4}-\d{2}-\d{2}$/.test(io)) {
+          const d = Math.floor((Date.now() - Date.parse(io + "T00:00:00Z")) / 86400000);
+          if (d >= 0 && d <= 3650) kept = d;
+        }
+        fetch(API + "/api/journey", {
+          method: "POST", keepalive: true, headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            id: jid, version: qs.get("v"), lang: qs.get("lang") || lang, dev: qs.get("dev") === "1" || undefined,
+            events: [{ t: 0, type: "uninstall", ...(kept != null ? { kept } : {}) }],
+          }),
+        }).catch(() => {});
+      }
     }
   }
 
