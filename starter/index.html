@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Get started with VexAI</title>
+<meta name="description" content="Try VexAI right on this page: translate a comic, translate an article and ask the AI about it.">
+<meta name="robots" content="noindex">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="VexAI">
+<meta property="og:title" content="Get started with VexAI">
+<meta property="og:description" content="Try VexAI right on this page: translate a comic, translate an article and ask the AI about it.">
+<meta property="og:image" content="https://vexai.pyktools.com/assets/og.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="/assets/icon48.png">
+<link rel="stylesheet" href="/style.css">
+</head>
+<body>
+<header class="site-head"><div class="wrap">
+  <a class="logo" href="/"><img src="/assets/icon48.png" alt="" width="32" height="32">VexAI</a>
+  <nav class="nav"><a href="/">Home</a><a href="/pricing/">Pricing</a><a href="/privacy/" class="hide-sm">Privacy</a><a href="/terms/" class="hide-sm">Terms</a></nav>
+</div></header>
+<main>
+<!-- Trang "Bắt đầu": extension mở MỘT lần ngay sau khi cài (fe/background.js, onInstalled "install") kèm
+     ?lang=&v=. Người mới cài đang đứng ở trang Chrome Web Store — nơi extension không chạy được — nên trang
+     này đặt sẵn truyện mẫu + bài viết mẫu để thử ngay. Tên nút trong hướng dẫn phải trùng chữ giao diện
+     popup (tabComic / translateImages / tabText / translateAll / pageAssistantReadPage trong fe). -->
+<style>
+  .st-hero{padding:44px 0 8px;text-align:center}
+  .st-hero h1{font-size:clamp(1.8rem,4vw,2.6rem);letter-spacing:-.02em;margin:0 0 10px}
+  .st-hero p{color:var(--muted);font-size:1.08rem;margin:0 auto;max-width:36em}
+  .st-pin{display:inline-flex;align-items:center;gap:10px;margin-top:18px;padding:10px 16px;border-radius:999px;background:var(--brand-soft);font-size:.93rem}
+  .st-pin svg{width:18px;height:18px;flex:none;color:var(--brand)}
+  .st-step{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:32px;align-items:start;padding:28px;margin-top:22px}
+  .st-step h2{font-size:1.3rem;margin:0 0 4px;display:flex;align-items:center;gap:10px}
+  .st-num{width:30px;height:30px;border-radius:50%;background:var(--brand);color:var(--brand-ink);font-size:.95rem;font-weight:700;display:inline-grid;place-items:center;flex:none}
+  .st-step ol{margin:12px 0 0;padding-left:20px;color:var(--muted)}
+  .st-step ol li{margin:6px 0}
+  .st-step b,.st-step kbd{color:var(--fg)}
+  kbd{font:600 .85em ui-monospace,Consolas,monospace;border:1px solid var(--line);border-bottom-width:2px;border-radius:6px;padding:1px 6px;background:var(--bg-soft)}
+  .st-comic{border-radius:12px;border:1px solid var(--line);width:100%;height:auto}
+  .st-article{border:1px solid var(--line);border-radius:12px;padding:18px 20px;background:var(--bg-soft);font-size:1.02rem;line-height:1.9}
+  .st-article h3{margin:0 0 8px;font-size:1.1rem}
+  .st-article p{margin:0 0 10px}
+  .st-foot{text-align:center;color:var(--muted);font-size:.93rem;margin:28px auto 0;max-width:46em}
+  /* Truyện mẫu nằm cột TRÁI: bảng "Translations" của extension mở ở mép phải, cột phải sẽ bị nó che. */
+  .st-step--flip{grid-template-columns:minmax(0,1.1fr) minmax(0,1fr)}
+  .st-step--flip > :first-child{order:2}
+  @media (max-width:800px){.st-step,.st-step--flip{grid-template-columns:1fr}.st-step--flip > :first-child{order:0}}
+</style>
+
+<section class="st-hero">
+  <div class="wrap narrow">
+    <h1 data-i="title">VexAI is installed 🎉</h1>
+    <p data-i="lede">It works on the pages you read. Try the three things below — right here, no sign-in needed.</p>
+    <div class="st-pin">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 17v5M9 3h6l-1 6 4 4H6l4-4z"/></svg>
+      <span data-i="pin">Tip: click the puzzle icon in Chrome's toolbar and pin VexAI so it is always one click away.</span>
+    </div>
+  </div>
+</section>
+
+<section style="padding-top:20px">
+  <div class="wrap">
+    <div class="card st-step st-step--flip">
+      <div>
+        <h2><span class="st-num">1</span><span data-i="c1h">Translate this comic</span></h2>
+        <ol data-i="c1p"></ol>
+      </div>
+      <img class="st-comic" id="st-comic" src="/assets/starter-comic.jpg" alt="Sample comic" width="1140" height="1584">
+    </div>
+
+    <div class="card st-step">
+      <div>
+        <h2><span class="st-num">2</span><span data-i="c2h">Translate this article</span></h2>
+        <ol data-i="c2p"></ol>
+      </div>
+      <article class="st-article" id="st-article" lang="ja">
+        <h3>読書の新しい楽しみ方</h3>
+        <p>インターネットのおかげで、世界中の物語や記事をいつでも読めるようになりました。しかし、言葉の壁はまだ残っています。</p>
+        <p>好きな作品が自分の言語に翻訳されるまで、何か月も待つ人は少なくありません。翻訳ツールを使えば、その時間をぐっと短くできます。</p>
+      </article>
+    </div>
+
+    <div class="card st-step">
+      <div>
+        <h2><span class="st-num">3</span><span data-i="c3h">Ask the AI about this page</span></h2>
+        <ol data-i="c3p"></ol>
+      </div>
+      <div class="st-article" data-i="c3box"></div>
+    </div>
+
+    <p class="st-foot" data-i="foot"></p>
+  </div>
+</section>
+
+<script>
+(function () {
+  // Nhãn nút lấy đúng từ giao diện popup của từng ngôn ngữ (fe/bg/i18n.js). Sửa ở đó thì sửa ở đây.
+  var T = {
+    en: { title: "VexAI is installed 🎉", lede: "It works on the pages you read. Try the three things below — right here, no sign-in needed.",
+      pin: "Tip: click the puzzle icon in Chrome's toolbar and pin VexAI so it is always one click away.",
+      c1h: "Translate this comic", c1p: ["Click the <b>VexAI icon</b> in the toolbar.", "Open the <b>Comic</b> tab.", "Click <b>Translate images</b> — the speech bubbles turn into your language."],
+      c2h: "Translate this article", c2p: ["Click the <b>VexAI icon</b> → <b>General</b> tab → <b>Translate all</b>.", "Or just select a sentence with your mouse for an instant translation."],
+      c3h: "Ask the AI about this page", c3p: ["Press <kbd>Alt</kbd> + <kbd>Q</kbd> to open the AI sidebar.", "Turn on <b>📖 Read page content</b>.", "Ask anything — for example the question on the right."],
+      c3box: "<h3>Try asking</h3><p>“Summarize this page in three bullet points.”</p><p>“What does the article above say about translation?”</p>",
+      foot: "Free without an account: 30 comic pages a day and 40 AI questions a week. Pages are only read when you use a feature on them — <a href=\"/privacy/\">privacy policy</a>." },
+    vi: { title: "Đã cài VexAI 🎉", lede: "VexAI chạy ngay trên trang bạn đang đọc. Thử ba việc dưới đây — ngay tại trang này, không cần đăng nhập.",
+      pin: "Mẹo: bấm biểu tượng mảnh ghép trên thanh công cụ Chrome rồi ghim VexAI để luôn có sẵn.",
+      c1h: "Dịch truyện này", c1p: ["Bấm <b>biểu tượng VexAI</b> trên thanh công cụ.", "Mở tab <b>Comic</b>.", "Bấm <b>Dịch ảnh</b> — chữ trong bóng thoại đổi sang tiếng của bạn."],
+      c2h: "Dịch bài viết này", c2p: ["Bấm <b>biểu tượng VexAI</b> → tab <b>Chung</b> → <b>Dịch tất cả</b>.", "Hoặc bôi đen một câu bằng chuột để xem bản dịch ngay."],
+      c3h: "Hỏi AI về trang này", c3p: ["Nhấn <kbd>Alt</kbd> + <kbd>Q</kbd> để mở thanh bên AI.", "Bật <b>📖 Đọc nội dung trang</b>.", "Hỏi bất cứ điều gì — ví dụ câu ở bên phải."],
+      c3box: "<h3>Thử hỏi</h3><p>“Tóm tắt trang này thành ba ý chính.”</p><p>“Bài viết ở trên nói gì về việc dịch?”</p>",
+      foot: "Miễn phí, không cần tài khoản: 30 trang truyện mỗi ngày và 40 câu hỏi AI mỗi tuần. Chỉ đọc trang khi bạn dùng một tính năng trên trang đó — <a href=\"/privacy/\">chính sách quyền riêng tư</a>." },
+    id: { title: "VexAI sudah terpasang 🎉", lede: "VexAI bekerja di halaman yang kamu baca. Coba tiga hal di bawah — langsung di sini, tanpa perlu masuk.",
+      pin: "Tips: klik ikon puzzle di toolbar Chrome lalu sematkan VexAI agar selalu siap dipakai.",
+      c1h: "Terjemahkan komik ini", c1p: ["Klik <b>ikon VexAI</b> di toolbar.", "Buka tab <b>Komik</b>.", "Klik <b>Terjemahkan gambar</b> — teks di balon kata berubah ke bahasamu."],
+      c2h: "Terjemahkan artikel ini", c2p: ["Klik <b>ikon VexAI</b> → tab <b>Umum</b> → <b>Terjemahkan semua</b>.", "Atau pilih satu kalimat dengan mouse untuk terjemahan instan."],
+      c3h: "Tanya AI tentang halaman ini", c3p: ["Tekan <kbd>Alt</kbd> + <kbd>Q</kbd> untuk membuka sidebar AI.", "Nyalakan <b>📖 Baca konten halaman</b>.", "Tanyakan apa saja — misalnya pertanyaan di sebelah kanan."],
+      c3box: "<h3>Coba tanyakan</h3><p>“Ringkas halaman ini dalam tiga poin.”</p><p>“Apa kata artikel di atas tentang penerjemahan?”</p>",
+      foot: "Gratis tanpa akun: 30 halaman komik per hari dan 40 pertanyaan AI per minggu. Halaman hanya dibaca saat kamu memakai fitur di halaman itu — <a href=\"/privacy/\">kebijakan privasi</a>." },
+    pt: { title: "VexAI instalado 🎉", lede: "O VexAI funciona nas páginas que você lê. Experimente as três coisas abaixo — aqui mesmo, sem precisar entrar.",
+      pin: "Dica: clique no ícone de quebra-cabeça na barra do Chrome e fixe o VexAI para tê-lo sempre à mão.",
+      c1h: "Traduza este quadrinho", c1p: ["Clique no <b>ícone do VexAI</b> na barra de ferramentas.", "Abra a aba <b>Quadrinhos</b>.", "Clique em <b>Traduzir imagens</b> — os balões passam para o seu idioma."],
+      c2h: "Traduza este artigo", c2p: ["Clique no <b>ícone do VexAI</b> → aba <b>Geral</b> → <b>Traduzir tudo</b>.", "Ou selecione uma frase com o mouse para ver a tradução na hora."],
+      c3h: "Pergunte à IA sobre esta página", c3p: ["Pressione <kbd>Alt</kbd> + <kbd>Q</kbd> para abrir a barra lateral de IA.", "Ative <b>📖 Ler conteúdo da página</b>.", "Pergunte o que quiser — por exemplo, a pergunta ao lado."],
+      c3box: "<h3>Experimente perguntar</h3><p>“Resuma esta página em três tópicos.”</p><p>“O que o artigo acima diz sobre tradução?”</p>",
+      foot: "Grátis sem conta: 30 páginas de quadrinhos por dia e 40 perguntas à IA por semana. As páginas só são lidas quando você usa um recurso nelas — <a href=\"/privacy/\">política de privacidade</a>." },
+    es: { title: "VexAI está instalado 🎉", lede: "VexAI funciona en las páginas que lees. Prueba las tres cosas de abajo, aquí mismo y sin iniciar sesión.",
+      pin: "Consejo: haz clic en el icono del puzle de la barra de Chrome y fija VexAI para tenerlo siempre a mano.",
+      c1h: "Traduce este cómic", c1p: ["Haz clic en el <b>icono de VexAI</b> de la barra de herramientas.", "Abre la pestaña <b>Cómic</b>.", "Haz clic en <b>Traducir imágenes</b>: los bocadillos pasan a tu idioma."],
+      c2h: "Traduce este artículo", c2p: ["Haz clic en el <b>icono de VexAI</b> → pestaña <b>General</b> → <b>Traducir todo</b>.", "O selecciona una frase con el ratón para ver la traducción al instante."],
+      c3h: "Pregunta a la IA sobre esta página", c3p: ["Pulsa <kbd>Alt</kbd> + <kbd>Q</kbd> para abrir el panel lateral de IA.", "Activa <b>📖 Leer contenido de la página</b>.", "Pregunta lo que quieras; por ejemplo, la pregunta de la derecha."],
+      c3box: "<h3>Prueba a preguntar</h3><p>«Resume esta página en tres puntos.»</p><p>«¿Qué dice el artículo de arriba sobre la traducción?»</p>",
+      foot: "Gratis sin cuenta: 30 páginas de cómic al día y 40 preguntas a la IA por semana. Las páginas solo se leen cuando usas una función en ellas — <a href=\"/privacy/\">política de privacidad</a>." },
+    ja: { title: "VexAI をインストールしました 🎉", lede: "VexAI は読んでいるページの上で動きます。下の3つを、このページでそのまま試せます。サインインは不要です。",
+      pin: "ヒント：Chrome ツールバーのパズルアイコンから VexAI を固定すると、いつでもワンクリックで使えます。",
+      c1h: "この漫画を翻訳する", c1p: ["ツールバーの <b>VexAI アイコン</b>をクリック。", "<b>マンガ</b>タブを開く。", "<b>画像を翻訳</b>をクリック — 吹き出しの文字があなたの言語に変わります。"],
+      c2h: "この記事を翻訳する", c2p: ["<b>VexAI アイコン</b> → <b>一般</b>タブ → <b>すべて翻訳</b>。", "または、文をマウスで選択するとすぐに訳が表示されます。"],
+      c3h: "このページについて AI に質問する", c3p: ["<kbd>Alt</kbd> + <kbd>Q</kbd> で AI サイドバーを開く。", "<b>📖 ページ内容を読む</b>をオンにする。", "何でも質問できます。たとえば右の質問をどうぞ。"],
+      c3box: "<h3>質問の例</h3><p>「このページを3つの要点にまとめて。」</p><p>「上の記事は翻訳について何と言っていますか？」</p>",
+      foot: "アカウント不要で無料：漫画は1日30ページ、AI への質問は週40回まで。ページを読み取るのは、そのページで機能を使ったときだけです — <a href=\"/privacy/\">プライバシーポリシー</a>。" },
+    ko: { title: "VexAI가 설치되었습니다 🎉", lede: "VexAI는 지금 보고 있는 페이지 위에서 작동합니다. 아래 세 가지를 이 페이지에서 바로 해 보세요. 로그인은 필요 없습니다.",
+      pin: "팁: Chrome 툴바의 퍼즐 아이콘을 눌러 VexAI를 고정하면 언제든 한 번에 열 수 있습니다.",
+      c1h: "이 만화 번역하기", c1p: ["툴바의 <b>VexAI 아이콘</b>을 클릭합니다.", "<b>만화</b> 탭을 엽니다.", "<b>이미지 번역</b>을 클릭하면 말풍선 글자가 원하는 언어로 바뀝니다."],
+      c2h: "이 글 번역하기", c2p: ["<b>VexAI 아이콘</b> → <b>일반</b> 탭 → <b>모두 번역</b>.", "또는 마우스로 문장을 선택하면 바로 번역이 나타납니다."],
+      c3h: "이 페이지에 대해 AI에게 묻기", c3p: ["<kbd>Alt</kbd> + <kbd>Q</kbd>를 눌러 AI 사이드바를 엽니다.", "<b>📖 페이지 내용 읽기</b>를 켭니다.", "무엇이든 물어보세요. 예를 들어 오른쪽 질문처럼요."],
+      c3box: "<h3>이렇게 물어보세요</h3><p>“이 페이지를 세 가지 요점으로 요약해 줘.”</p><p>“위 글은 번역에 대해 뭐라고 하나요?”</p>",
+      foot: "계정 없이 무료: 만화 하루 30페이지, AI 질문 주 40회. 페이지는 그 페이지에서 기능을 사용할 때만 읽습니다 — <a href=\"/privacy/\">개인정보처리방침</a>." },
+    "zh-CN": { title: "VexAI 已安装 🎉", lede: "VexAI 直接在你阅读的页面上工作。下面三件事可以在本页直接试用，无需登录。",
+      pin: "提示：点击 Chrome 工具栏上的拼图图标并固定 VexAI，以后一键即可打开。",
+      c1h: "翻译这页漫画", c1p: ["点击工具栏上的 <b>VexAI 图标</b>。", "打开<b>漫画</b>标签。", "点击<b>翻译图片</b> — 对话气泡里的文字会变成你的语言。"],
+      c2h: "翻译这篇文章", c2p: ["点击 <b>VexAI 图标</b> → <b>通用</b>标签 → <b>翻译全部</b>。", "或者用鼠标选中一句话，立即看到译文。"],
+      c3h: "就本页向 AI 提问", c3p: ["按 <kbd>Alt</kbd> + <kbd>Q</kbd> 打开 AI 侧边栏。", "打开 <b>📖 读取页面内容</b>。", "随便问 — 比如右边的问题。"],
+      c3box: "<h3>试着问</h3><p>“用三个要点总结这个页面。”</p><p>“上面的文章对翻译说了什么？”</p>",
+      foot: "无需账号即可免费使用：每天 30 页漫画，每周 40 次 AI 提问。只有在你对某个页面使用功能时才会读取该页面 — <a href=\"/privacy/\">隐私政策</a>。" }
+  };
+  var qs = new URLSearchParams(location.search);
+  var want = (qs.get("lang") || navigator.language || "en").toLowerCase();
+  var lang = want.indexOf("zh") === 0 ? "zh-CN" : (Object.keys(T).filter(function (l) { return want.indexOf(l.toLowerCase()) === 0; })[0] || "en");
+  var S = T[lang];
+  document.documentElement.lang = lang;
+  document.querySelectorAll("[data-i]").forEach(function (el) {
+    var v = S[el.getAttribute("data-i")];
+    if (v == null) return;
+    el.innerHTML = Array.isArray(v) ? v.map(function (x) { return "<li>" + x + "</li>"; }).join("") : v;
+  });
+  // Người đọc tiếng Nhật: bài mẫu tiếng Nhật thì không có gì để dịch → đổi sang bài tiếng Anh.
+  // Người đọc tiếng Hàn: truyện mẫu thoại Hàn thì không có gì để dịch → bản thoại tiếng Anh.
+  if (lang === "ko") document.getElementById("st-comic").src = "/assets/starter-comic-en.jpg";
+  if (lang === "ja") {
+    var a = document.getElementById("st-article");
+    a.lang = "en";
+    a.innerHTML = "<h3>A new way to enjoy reading</h3><p>Thanks to the internet, stories and articles from all over the world are always within reach. The language barrier, however, is still there.</p><p>Many readers wait months for a favourite series to be translated into their language. A translation tool can make that wait much shorter.</p>";
+  }
+})();
+</script>
+
+</main>
+<footer class="site-foot"><div class="wrap">
+  <nav class="foot-features">
+    <a href="/manga-translator/">Manga translator</a><a href="/web-page-translator/">Web page translator</a><a href="/youtube-video-summary/">YouTube video summary</a><a href="/dich-truyen-tranh/" hreflang="vi">Dịch truyện tranh</a>
+  </nav>
+  <span>© 2026 Pyktools</span>
+  <nav>
+    <a href="/pricing/">Pricing</a><a href="/terms/">Terms of Service</a><a href="/refund/">Refund Policy</a>
+    <a href="/privacy/">Privacy Policy</a><a href="/acceptable-use/">Acceptable Use</a><a href="mailto:support@pyktools.com">support@pyktools.com</a>
+  </nav>
+</div></footer>
+</body>
+</html>
